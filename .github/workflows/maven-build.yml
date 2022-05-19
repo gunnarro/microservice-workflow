@@ -4,12 +4,20 @@ name: Java CI Maven
 on:
   workflow_call:
     inputs:
-      username:
-        required: false
+      sonar_url:
+        required: true
+        type: string
+      sonar_username:
+        required: true
+        type: string
+      sonar_organization:
+        required: true
         type: string
     secrets:
-      token:
-        required: false
+      github_token:
+        required: true
+      sonar_token:
+        required: true
         
 jobs:
   build:
@@ -26,6 +34,6 @@ jobs:
       run: mvn -B clean install --file pom.xml
       
     - name: sonarqube
-      run:  mvn sonar:sonar -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} -Dsonar.host.url=${{ secrets.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      run:  mvn sonar:sonar -Dsonar.organization=${{ secrets.sonar_organization }} -Dsonar.host.url=${{ secrets.sonar_url }} -Dsonar.login=${{ secrets.sonar_token }}
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.github_token }}
