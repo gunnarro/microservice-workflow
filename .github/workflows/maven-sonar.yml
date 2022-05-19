@@ -23,7 +23,7 @@ on:
         required: true
         type: string
     secrets:
-      sonar_token:
+      sonarqube_token:
         required: true
         
 jobs:
