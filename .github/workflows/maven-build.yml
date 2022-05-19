@@ -1,4 +1,5 @@
 # Common maven build workflow for java applications
+# Use https://github.com/actions/checkout in order to checkout project
 name: Java CI Maven
 
 on:
