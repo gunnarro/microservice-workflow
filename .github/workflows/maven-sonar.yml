@@ -1,10 +1,28 @@
-name: Build
+#name: Build
+#on:
+#  push:
+#    branches:
+#      - master
+#  pull_request:
+#    types: [opened, synchronize, reopened]
+    
+# Common maven build workflow for java applications
+# Use https://github.com/actions/checkout in order to checkout project
+name: Java CI Maven
+
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_call:
+    inputs:
+      sonar_url:
+        required: true
+        type: string
+      sonar_project_key:
+        required: true
+        type: string
+    secrets:
+      sonar_token:
+        required: true
+        
 jobs:
   build:
     name: Build
