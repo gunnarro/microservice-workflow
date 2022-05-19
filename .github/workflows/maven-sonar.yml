@@ -54,4 +54,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ inputs.sonarqube_token }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.host.url=${{ inputs.sonarqube_url }} -Dsonar.organization=${{ inputs.sonarqube_organization }} -Dsonar.projectKey=${{ inputs.sonarqube_project_key}}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.login=${{ secrets.sonarqube_token }} -Dsonar.host.url=${{ inputs.sonarqube_url }} -Dsonar.organization=${{ inputs.sonarqube_organization }} -Dsonar.projectKey=${{ inputs.sonarqube_project_key}}
